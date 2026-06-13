@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(upstash redis *)",
+      "Bash(upstash auth *)",
+      "WebSearch",
+      "Bash(vercel *)",
+      "Bash(npm install *)",
+      "Bash(claude doctor *)",
+      "PowerShell(claude doctor *)",
+      "Bash(upstash search *)",
+      "Bash(env)",
+      "Bash(claude mcp *)",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__get-library-docs",
+      "Bash(npm run *)",
+      "Bash(curl *)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(npx skills *)",
+      "Bash(npm i *)",
+      "PowerShell(python --version)",
+      "PowerShell(New-Item *)",
+      "PowerShell(python3 --version)",
+      "Bash(cat)",
+      "Bash(chmod +x /usr/local/bin/python3)",
+      "Bash(gh --version)",
+      "PowerShell(winget install *)",
+      "PowerShell(irm https://github.com/cli/cli/releases/download/v2.61.0/gh_2.61.0_windows_amd64.msi -OutFile \"$env:TEMP\\\\gh.msi\"; msiexec /i \"$env:TEMP\\\\gh.msi\" /quiet /norestart; \"GitHub CLI installed\")",
+      "PowerShell(gh *)",
+      "PowerShell(ls \"C:\\\\Program Files\\\\GitHub CLI\\\\\" 2>/dev/null; ls \"C:\\\\Program Files \\(x86\\)\\\\GitHub CLI\\\\\" 2>/dev/null; ls \"$env:LOCALAPPDATA\\\\GitHub CLI\\\\\" 2>/dev/null)",
+      "PowerShell(Expand-Archive *)",
+      "Bash(cp \"/c/Users/siteadmin/AppData/Local/Microsoft/WindowsApps/gh.exe\" /usr/local/bin/gh)",
+      "Bash(chmod +x /usr/local/bin/gh)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "context7",
+    "vercel"
+  ]
+}
