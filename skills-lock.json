@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "skills": {
+    "documentation": {
+      "source": "anthropics/knowledge-work-plugins",
+      "sourceType": "github",
+      "skillPath": "engineering/skills/documentation/SKILL.md",
+      "computedHash": "43947d80ab634432362a076657eb225212760adbe731c0829a92709aeb842666"
+    },
+    "documentation-writer": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "skillPath": "skills/documentation-writer/SKILL.md",
+      "computedHash": "ee53d65b163cd7eb953a930c95841cfe398cc2c0bd24c06508bbaa07c432be35"
+    },
+    "jsdoc": {
+      "source": "claude-dev-suite/claude-dev-suite",
+      "sourceType": "github",
+      "skillPath": "skills/documentation/jsdoc/SKILL.md",
+      "computedHash": "f9f8fb41925f1bb45416bd97447fe300fb8291db35a84c0f46acb95405850b0b"
+    },
+    "jsdoc-tsdoc": {
+      "source": "claude-dev-suite/claude-dev-suite",
+      "sourceType": "github",
+      "skillPath": "skills/documentation/jsdoc-tsdoc/SKILL.md",
+      "computedHash": "4a9e9dd30e61086465a43830a0c30844afff605d80eb52980e2c7c133dfc7276"
+    },
+    "solid-principles": {
+      "source": "claude-dev-suite/claude-dev-suite",
+      "sourceType": "github",
+      "skillPath": "skills/best-practices/solid-principles/SKILL.md",
+      "computedHash": "4041ed0cd97b6df405d2f4f19b88f18c7e456897f3bc483171a908423976192b"
+    }
+  }
+}

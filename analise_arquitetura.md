@@ -4,7 +4,11 @@
 > **Framework:** Next.js 16 (App Router) + React 19  
 > **Data da análise:** 2026-06-12
 
+> 📚 **Documentação completa em [docs/architecture/](docs/architecture/overview.md)**
+
 ---
+
+## 📁 Estrutura do Projeto
 
 ## 📁 Estrutura do Projeto
 
@@ -157,3 +161,11 @@ User clica "Carregar mais" → page++ → SWR fetch página seguinte → append
 ## ✅ Conclusão
 
 É um projeto **bem estruturado**, moderno (React 19, Next 16, Tailwind v4), com boa separação de responsabilidades e UX polida (skeletons, debounce, paginação infinita, dark mode automático). A arquitetura segue as melhores práticas atuais do ecossistema Next.js com App Router e Server Components.
+
+---
+
+## 📚 Ver também
+
+- [Documentação completa](../README.md)
+- [Guia de Instalação](docs/getting-started/installation.md)
+- [ADRs (Decisões Arquiteturais)](docs/architecture/adrs/)

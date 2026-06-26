@@ -1,16 +1,39 @@
 import { books, type Book } from '@/lib/books'
 
+/**
+ * Configuration options for random book selection.
+ *
+ * @public
+ */
 export interface RandomBooksOptions {
+  /** Number of books to return (default: 10) */
   count?: number
+  /** Book IDs to exclude from results (default: []) */
   excludeIds?: string[]
+  /** Minimum number of topics a book must have (default: 1) */
   minTopics?: number
+  /** Maximum number of topics a book can have (default: 5) */
   maxTopics?: number
 }
 
 /**
- * Retorna N livros aleatórios do acervo
- * - Garante diversidade de temas (spread por principais_topicos)
- * - Evita duplicatas via excludeIds
+ * Returns N random books from the catalog.
+ *
+ * @remarks
+ * Uses Fisher-Yates shuffle for unbiased randomization.
+ * Filters books by topic count range and excludes specified IDs.
+ * Does not guarantee topic diversity - use {@link getDiverseRandomBooks} for that.
+ *
+ * @param options - Configuration options
+ * @returns Array of randomly selected books (may be fewer than requested if not enough eligible books)
+ *
+ * @example
+ * ```typescript
+ * // Get 5 random books excluding specific IDs
+ * const books = getRandomBooks({ count: 5, excludeIds: ['book-1', 'book-2'] })
+ * ```
+ *
+ * @public
  */
 export function getRandomBooks(options: RandomBooksOptions = {}): Book[] {
   const {
@@ -38,11 +61,27 @@ export function getRandomBooks(options: RandomBooksOptions = {}): Book[] {
 }
 
 /**
- * Retorna livros aleatórios garantindo diversidade de tópicos
- * Tenta pegar no máximo 2 livros por tópico principal
+ * Returns random books ensuring topic diversity.
+ *
+ * @remarks
+ * Groups books by their first topic (main topic) and distributes
+ * selection slots across topics to maximize variety.
+ * Falls back to {@link getRandomBooks} to fill remaining slots if needed.
+ * Final result is shuffled again for presentation randomness.
+ *
+ * @param count - Number of books to return (default: 10)
+ * @returns Array of diverse random books
+ *
+ * @example
+ * ```typescript
+ * // Get 12 books with diverse topics
+ * const books = getDiverseRandomBooks(12)
+ * ```
+ *
+ * @public
  */
 export function getDiverseRandomBooks(count = 10): Book[] {
-  const topicsMap = new Map<string, Book[]>()
+  const topicsMap = new Map<string, Book[]>
 
   books.forEach(book => {
     const topics = book.principais_topicos.split(',').map(t => t.trim()).filter(Boolean)

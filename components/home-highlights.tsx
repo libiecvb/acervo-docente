@@ -14,9 +14,30 @@ const STORAGE_KEY = "acervo-docente:highlights-seed"
 const STORAGE_VERSION = 1
 
 interface HomeHighlightsProps {
+  /** Initial books to display before API response */
   initialBooks: Book[]
 }
 
+/**
+ * Home highlights section with persistent random book selection.
+ *
+ * @remarks
+ * Features:
+ * - Persistent random selection via localStorage seed
+ * - Topic-diverse books from `/api/random-books`
+ * - Refresh button to get new selection
+ * - Reset button to return to original selection
+ * - 1-hour SWR cache deduplication
+ * - Fallback to initialBooks during loading
+ *
+ * The seed is stored in localStorage and persists across sessions.
+ * Incrementing the seed triggers a new random selection from the API.
+ *
+ * @param props - Component props
+ * @param props.initialBooks - Initial books for SSR/fallback
+ *
+ * @public
+ */
 export function HomeHighlights({ initialBooks }: HomeHighlightsProps) {
   // Inicializa seed do localStorage (ou 0 se não existe)
   const [seed, setSeed] = useState<number>(() => {

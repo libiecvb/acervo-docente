@@ -6,6 +6,21 @@ import { Badge } from "@/components/ui/badge"
 import { ExternalLink, ChevronDown, Copy, Check } from "lucide-react"
 import { getTopics, type Book } from "@/lib/books"
 
+/**
+ * Book card component displaying book details with expandable summary and topic tags.
+ *
+ * @remarks
+ * Features:
+ * - Expandable summary (show/hide with line-clamp)
+ * - Topic badges from `principais_topicos`
+ * - Copy book info to clipboard
+ * - External link button
+ * - Book ID display
+ *
+ * @param book - The book object to display
+ *
+ * @public
+ */
 export function BookCard({ book }: { book: Book }) {
   const [expanded, setExpanded] = useState(false)
   const [copied, setCopied] = useState(false)

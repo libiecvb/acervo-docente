@@ -1,4 +1,24 @@
-export function SiteHeader({ total }: { total: number }) {
+interface SiteHeaderProps {
+  /** Total number of books in the catalog */
+  total: number
+}
+
+/**
+ * Site header component displaying the application title and book count.
+ *
+ * @remarks
+ * Renders the main header with:
+ * - Application tagline
+ * - Main title "Acervo Docente" with highlighted "Docente"
+ * - Description text
+ * - Status indicator with active database badge and book count
+ *
+ * @param props - Component props
+ * @param props.total - Total number of books to display
+ *
+ * @public
+ */
+export function SiteHeader({ total }: SiteHeaderProps) {
   return (
     <header className="border-b border-border">
       <div className="mx-auto max-w-5xl px-5 py-10 md:py-14">

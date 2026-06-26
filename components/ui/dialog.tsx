@@ -1,3 +1,8 @@
+﻿/**
+ * @file Dialog component built on Base UI primitives.
+ * @remarks Compound component pattern for accessible modal dialogs.
+ */
+
 "use client"
 
 import * as React from "react"
@@ -7,26 +12,72 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { XIcon } from "lucide-react"
 
+/**
+ * Dialog root component.
+ *
+ * @remarks Wraps @base-ui/react/dialog Root with data-slot attribute.
+ * @public
+ */
 function Dialog({ ...props }: DialogPrimitive.Root.Props) {
   return <DialogPrimitive.Root data-slot="dialog" {...props} />
 }
 
+/**
+ * Dialog trigger component.
+ *
+ * @remarks Wraps @base-ui/react/dialog Trigger with data-slot attribute.
+ * @public
+ */
 function DialogTrigger({ ...props }: DialogPrimitive.Trigger.Props) {
   return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />
 }
 
+/**
+ * Dialog portal component.
+ *
+ * @remarks Wraps @base-ui/react/dialog Portal with data-slot attribute.
+ * @public
+ */
 function DialogPortal({ ...props }: DialogPrimitive.Portal.Props) {
   return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />
 }
 
+/**
+ * Dialog close component.
+ *
+ * @remarks Wraps @base-ui/react/dialog Close with data-slot attribute.
+ * @public
+ */
 function DialogClose({ ...props }: DialogPrimitive.Close.Props) {
   return <DialogPrimitive.Close data-slot="dialog-close" {...props} />
 }
 
+/**
+ * Props for the DialogOverlay component.
+ *
+ * @public
+ */
+interface DialogOverlayProps extends DialogPrimitive.Backdrop.Props {
+  /** Optional additional Tailwind classes */
+  className?: string
+}
+
+/**
+ * Dialog overlay/backdrop component.
+ *
+ * @remarks
+ * Renders a semi-transparent backdrop behind the dialog with
+ * optional backdrop blur and animation classes.
+ *
+ * @param props - Component props
+ * @param props.className - Additional Tailwind CSS classes
+ *
+ * @public
+ */
 function DialogOverlay({
   className,
   ...props
-}: DialogPrimitive.Backdrop.Props) {
+}: DialogOverlayProps) {
   return (
     <DialogPrimitive.Backdrop
       data-slot="dialog-overlay"
@@ -39,14 +90,41 @@ function DialogOverlay({
   )
 }
 
+/**
+ * Props for the DialogContent component.
+ *
+ * @public
+ */
+interface DialogContentProps
+  extends DialogPrimitive.Popup.Props {
+  /** Optional additional Tailwind classes */
+  className?: string
+  /** Dialog body content */
+  children: React.ReactNode
+  /** Show built-in close button (default: true) */
+  showCloseButton?: boolean
+}
+
+/**
+ * Dialog content component with optional close button.
+ *
+ * @remarks
+ * Renders the dialog popup with overlay and optional close button.
+ * Uses fixed positioning with center alignment and responsive max-width.
+ *
+ * @param props - Component props
+ * @param props.className - Additional Tailwind CSS classes
+ * @param props.children - Dialog body content
+ * @param props.showCloseButton - Show built-in close button (default: true)
+ *
+ * @public
+ */
 function DialogContent({
   className,
   children,
   showCloseButton = true,
   ...props
-}: DialogPrimitive.Popup.Props & {
-  showCloseButton?: boolean
-}) {
+}: DialogContentProps) {
   return (
     <DialogPortal>
       <DialogOverlay />
@@ -70,8 +148,7 @@ function DialogContent({
               />
             }
           >
-            <XIcon
-            />
+            <XIcon />
             <span className="sr-only">Close</span>
           </DialogPrimitive.Close>
         )}
@@ -80,7 +157,26 @@ function DialogContent({
   )
 }
 
-function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
+/**
+ * Props for the DialogHeader component.
+ *
+ * @public
+ */
+interface DialogHeaderProps extends React.ComponentProps<"div"> {
+  /** Optional additional Tailwind classes */
+  className?: string
+}
+
+/**
+ * Dialog header component.
+ *
+ * @remarks Flex column layout for dialog title and description.
+ * @param props - Component props
+ * @param props.className - Additional Tailwind CSS classes
+ *
+ * @public
+ */
+function DialogHeader({ className, ...props }: DialogHeaderProps) {
   return (
     <div
       data-slot="dialog-header"
@@ -90,14 +186,38 @@ function DialogHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+/**
+ * Props for the DialogFooter component.
+ *
+ * @public
+ */
+interface DialogFooterProps
+  extends React.ComponentProps<"div"> {
+  /** Optional additional Tailwind classes */
+  className?: string
+  /** Dialog footer content */
+  children: React.ReactNode
+  /** Show built-in close button (default: false) */
+  showCloseButton?: boolean
+}
+
+/**
+ * Dialog footer component with optional close button.
+ *
+ * @remarks Flex layout with responsive row direction on small screens.
+ * @param props - Component props
+ * @param props.className - Additional Tailwind CSS classes
+ * @param props.children - Footer content
+ * @param props.showCloseButton - Show built-in close button (default: false)
+ *
+ * @public
+ */
 function DialogFooter({
   className,
   showCloseButton = false,
   children,
   ...props
-}: React.ComponentProps<"div"> & {
-  showCloseButton?: boolean
-}) {
+}: DialogFooterProps) {
   return (
     <div
       data-slot="dialog-footer"
@@ -117,7 +237,26 @@ function DialogFooter({
   )
 }
 
-function DialogTitle({ className, ...props }: DialogPrimitive.Title.Props) {
+/**
+ * Props for the DialogTitle component.
+ *
+ * @public
+ */
+interface DialogTitleProps extends DialogPrimitive.Title.Props {
+  /** Optional additional Tailwind classes */
+  className?: string
+}
+
+/**
+ * Dialog title component.
+ *
+ * @remarks Uses Playfair Display font via `font-heading` class.
+ * @param props - Component props
+ * @param props.className - Additional Tailwind CSS classes
+ *
+ * @public
+ */
+function DialogTitle({ className, ...props }: DialogTitleProps) {
   return (
     <DialogPrimitive.Title
       data-slot="dialog-title"
@@ -130,10 +269,29 @@ function DialogTitle({ className, ...props }: DialogPrimitive.Title.Props) {
   )
 }
 
+/**
+ * Props for the DialogDescription component.
+ *
+ * @public
+ */
+interface DialogDescriptionProps extends DialogPrimitive.Description.Props {
+  /** Optional additional Tailwind classes */
+  className?: string
+}
+
+/**
+ * Dialog description component.
+ *
+ * @remarks Uses muted foreground color with underline styles for links.
+ * @param props - Component props
+ * @param props.className - Additional Tailwind CSS classes
+ *
+ * @public
+ */
 function DialogDescription({
   className,
   ...props
-}: DialogPrimitive.Description.Props) {
+}: DialogDescriptionProps) {
   return (
     <DialogPrimitive.Description
       data-slot="dialog-description"
