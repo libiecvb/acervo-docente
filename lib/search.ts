@@ -164,9 +164,9 @@ export async function searchBooks(
       query: q,
       limit: 20,
       filter: options?.filter,
-      semanticWeight: 0.5, // ↓ Reduzir: mais full-text, menos semântico
-      reranking: false, // ↑ Ativar reranking (melhora precisão)
-      inputEnrichment: true,     // ↑ Desativar expansão automática
+      semanticWeight: 0.3, // More full-text weight, less semantic for better precision
+      reranking: true, // Enable reranking for improved result precision
+      inputEnrichment: true, // Disable automatic query expansion
       keepOriginalQueryAfterEnrichment: true,
     })
 
